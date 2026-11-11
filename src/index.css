@@ -1,0 +1,89 @@
+
+@import "tailwindcss";
+
+/* ========================================
+   TEMA ESCURO
+======================================== */
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: #101010;
+  --foreground: #F5F0E8;
+
+  --card: #1C1C1C;
+  --primary: #E53935;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #292929;
+  --muted: #999999;
+  --border: #383838;
+
+  --sidebar: #151515;
+}
+
+/* ========================================
+   TEMA CLARO
+======================================== */
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --background: #F5F3EF;
+  --foreground: #252525;
+
+  --card: #FFFFFF;
+  --primary: #D93636;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #EAE7E2;
+  --muted: #77716B;
+  --border: #DEDAD4;
+
+  --sidebar: #ECE9E3;
+}
+
+/* ========================================
+   TAILWIND THEME
+======================================== */
+
+@theme inline {
+  --font-sans: "Inter", sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+
+  --color-sidebar: var(--sidebar);
+}
+
+/* ========================================
+   GLOBAL STYLES
+======================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Arial, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+button,
+a,
+input {
+  font: inherit;
+}
