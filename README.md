@@ -34,7 +34,7 @@ O projecto foi pensado para oferecer uma experiência simples e intuitiva, com i
 Acompanhe os principais números da sua coleção, veja o progresso geral e aceda rapidamente aos mangás adicionados.
 
 <p align="center">
-  <img src="docs/images/dashboard.webp" alt="Dashboard da Minha Mangateca com estatísticas e coleções recentes" width="100%" />
+  <img src="docs/images/dashboard.png" alt="Dashboard da Minha Mangateca com estatísticas e coleções recentes" width="100%" />
 </p>
 
 ### 2. Minha Coleção
@@ -42,7 +42,7 @@ Acompanhe os principais números da sua coleção, veja o progresso geral e aced
 Consulte as obras cadastradas, pesquise por título, filtre por editora ou status de publicação e acompanhe o progresso de cada coleção.
 
 <p align="center">
-  <img src="docs/images/colecao.webp" alt="Tela Minha Coleção com busca, filtros e cartões de mangás" width="100%" />
+  <img src="docs/images/colecao.png" alt="Tela Minha Coleção com busca, filtros e cartões de mangás" width="100%" />
 </p>
 
 ### 3. Detalhes do mangá
@@ -50,7 +50,7 @@ Consulte as obras cadastradas, pesquise por título, filtre por editora ou statu
 Visualize a quantidade total de volumes, os exemplares adquiridos e os que ainda faltam. Actualize o status de cada volume directamente na grade.
 
 <p align="center">
-  <img src="docs/images/detalhes.webp" alt="Detalhes de um mangá com progresso e grade de volumes adquiridos e faltantes" width="100%" />
+  <img src="docs/images/detalhes.png" alt="Detalhes de um mangá com progresso e grade de volumes adquiridos e faltantes" width="100%" />
 </p>
 
 ### 4. Lista de desejos
@@ -58,7 +58,7 @@ Visualize a quantidade total de volumes, os exemplares adquiridos e os que ainda
 Guarde os títulos que pretende comprar e mantenha suas próximas aquisições organizadas. Quando adquirir uma obra, pode transferi-la para a coleção.
 
 <p align="center">
-  <img src="docs/images/desejos.webp" alt="Lista de desejos com mangás que o utilizador pretende adquirir" width="100%" />
+  <img src="docs/images/desejos.png" alt="Lista de desejos com mangás que o utilizador pretende adquirir" width="100%" />
 </p>
 
 ---
