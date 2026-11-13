@@ -87,3 +87,19 @@ a,
 input {
   font: inherit;
 }
+
+/* Cursor de interação: deixa claro o que pode ser acionado. */
+button:not(:disabled),
+a[href],
+label[for],
+select,
+summary,
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+/* Controles desabilitados não devem parecer acionáveis. */
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
