@@ -155,11 +155,18 @@ export function MangaDetails() {
                 text-xs font-medium ${
                   manga.publicationStatus === "completed"
                     ? "bg-green-500/10 text-green-600"
-                    : "bg-blue-500/10 text-blue-500"
+                    : manga.publicationStatus === "paused"
+                      ? "bg-amber-500/10 text-amber-600"
+                      : manga.publicationStatus === "cancelled"
+                        ? "bg-red-500/10 text-red-600"
+                        : "bg-blue-500/10 text-blue-500"
                 }`}>
-                {manga.publicationStatus === "completed"
-                  ? "Concluído"
-                  : "Em publicação"}
+                {{
+                  ongoing: "Em publicação",
+                  completed: "Completo",
+                  paused: "Em pausa",
+                  cancelled: "Cancelado",
+                }[manga.publicationStatus || "ongoing"]}
               </span>
             </div>
 
