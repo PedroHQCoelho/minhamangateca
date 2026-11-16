@@ -538,7 +538,9 @@ useEffect(() => {
                 focus:border-primary"
             >
               <option value="ongoing">Em publicação</option>
-              <option value="completed">Concluído</option>
+              <option value="completed">Completo</option>
+              <option value="paused">Em pausa</option>
+              <option value="cancelled">Cancelado</option>
             </select>
 
             <p className="mt-1 text-xs text-muted">
