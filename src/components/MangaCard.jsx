@@ -6,6 +6,7 @@ export function MangaCard({
   id,
   title,
   publisher,
+  publicationStatus,
   totalVolumes,
   ownedVolumes,
   coverColor,
@@ -115,7 +116,9 @@ export function MangaCard({
 
             <p className="mt-2 text-xs text-muted">
               {missing === 0
-                ? "Coleção completa!"
+                ? publicationStatus === "completed"
+                  ? "Coleção completa!"
+                  : "Coleção atualizada!"
                 : `${missing} volumes faltantes`}
             </p>
 
