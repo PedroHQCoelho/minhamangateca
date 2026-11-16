@@ -6,6 +6,8 @@ import {
   BookOpen,
   Bookmark,
   TrendingUp,
+  BadgeCheck,
+  RefreshCw,
 } from "lucide-react";
 
 import { MangaCard } from "../components/MangaCard";
@@ -20,6 +22,20 @@ export function Dashboard() {
   // Estatísticas da coleção
 
   const totalCollections = mangas.length;
+
+  const completedCollections = mangas.filter(
+    (manga) =>
+      manga.publicationStatus === "completed" &&
+      manga.totalVolumes > 0 &&
+      manga.ownedVolumes.length >= manga.totalVolumes
+  ).length;
+
+  const updatedCollections = mangas.filter(
+    (manga) =>
+      manga.publicationStatus === "ongoing" &&
+      manga.totalVolumes > 0 &&
+      manga.ownedVolumes.length >= manga.totalVolumes
+  ).length;
 
   const totalOwned = mangas.reduce(
     (sum, manga) => sum + manga.ownedVolumes.length,
@@ -44,6 +60,16 @@ export function Dashboard() {
       label: "Coleções",
       value: totalCollections,
       icon: Layers,
+    },
+    {
+      label: "Coleções completas",
+      value: completedCollections,
+      icon: BadgeCheck,
+    },
+    {
+      label: "Coleções atualizadas",
+      value: updatedCollections,
+      icon: RefreshCw,
     },
     {
       label: "Volumes adquiridos",
@@ -97,7 +123,7 @@ export function Dashboard() {
       {/* Indicadores */}
 
       <section className="mb-10 grid grid-cols-1 gap-4
-        sm:grid-cols-2 xl:grid-cols-4">
+        sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6">
 
         {stats.map((stat) => {
           const Icon = stat.icon;
