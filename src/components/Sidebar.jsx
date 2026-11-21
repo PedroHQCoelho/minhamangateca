@@ -1,14 +1,13 @@
-
 import {
   LayoutDashboard,
   Library,
   Heart,
   Settings,
-  BookOpen,
   X,
 } from "lucide-react";
 
 import { NavLink } from "react-router-dom";
+import { Logo } from "./Logo";
 
 const menuItems = [
   {
@@ -70,29 +69,6 @@ export function Sidebar({ mobileOpen = false, onClose }) {
     );
   }
 
-  function renderLogo() {
-    return (
-      <div className="flex items-center gap-3">
-
-        <div className="flex h-12 w-12 items-center
-          justify-center rounded-xl bg-primary text-white">
-          <BookOpen size={27} />
-        </div>
-
-        <div>
-          <h1 className="text-lg font-bold leading-tight">
-            Minha
-          </h1>
-
-          <h1 className="text-lg font-bold leading-tight">
-            Mangateca
-          </h1>
-        </div>
-
-      </div>
-    );
-  }
-
   return (
     <>
       {/* Sidebar desktop */}
@@ -103,7 +79,7 @@ export function Sidebar({ mobileOpen = false, onClose }) {
         lg:flex">
 
         <div className="mb-12">
-          {renderLogo()}
+          <Logo />
         </div>
 
         {renderNavigation()}

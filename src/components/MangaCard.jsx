@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { BookOpen, Pencil, Trash2, Eye } from "lucide-react";
 import { getCover } from "../utils/imageStorage";
+import {
+  VolumeStrip,
+  getMissingVolumes,
+  formatRanges,
+} from "./VolumeStrip";
 
 export function MangaCard({
   id,
@@ -22,6 +27,17 @@ export function MangaCard({
   const progress = totalVolumes > 0
     ? Math.round((owned / totalVolumes) * 100)
     : 0;
+
+  const missingList = getMissingVolumes(totalVolumes, ownedVolumes);
+
+  // Diz quais volumes faltam quando o texto cabe no card
+  // ("Faltam: 37–43"). Se a lista for longa, mostra só a quantidade.
+  const missingRanges = formatRanges(missingList);
+
+  const missingLabel =
+    missingRanges.length <= 16
+      ? `Faltam: ${missingRanges}`
+      : `${missing} volumes faltantes`;
 
   const [coverUrl, setCoverUrl] = useState("");
 
@@ -106,20 +122,14 @@ export function MangaCard({
               </span>
             </div>
 
-            <div className="h-2 overflow-hidden rounded-full
-              bg-secondary">
-              <div
-                className="h-full rounded-full bg-primary"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
+            <VolumeStrip total={totalVolumes} owned={ownedVolumes} />
 
             <p className="mt-2 text-xs text-muted">
               {missing === 0
                 ? publicationStatus === "completed"
                   ? "Coleção completa!"
                   : "Coleção atualizada!"
-                : `${missing} volumes faltantes`}
+                : missingLabel}
             </p>
 
           </div>
