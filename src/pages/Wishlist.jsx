@@ -230,7 +230,8 @@ export function Wishlist() {
           </div>
 
           <span className="text-sm font-medium text-primary">
-            {filteredWishlist.length} resultados
+            {filteredWishlist.length}{" "}
+            {filteredWishlist.length === 1 ? "resultado" : "resultados"}
           </span>
         </div>
 

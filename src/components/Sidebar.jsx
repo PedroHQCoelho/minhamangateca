@@ -122,7 +122,7 @@ export function Sidebar({ mobileOpen = false, onClose }) {
             <div className="mb-12 flex items-center
               justify-between gap-3">
 
-              {renderLogo()}
+              <Logo />
 
               <button
                 type="button"

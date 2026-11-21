@@ -20,33 +20,8 @@ export function MangaDetails() {
 
   const manga = mangas.find((item) => item.id === id);
 
-  // Verifica se o mangá existe
-  if (!manga) {
-    return (
-      <main className="flex-1 px-6 py-8 lg:px-10">
-        <h1 className="text-2xl font-bold">
-          Mangá não encontrado
-        </h1>
-
-        <button
-          type="button"
-          onClick={() => navigate("/colecao")}
-          className="mt-5 inline-flex items-center gap-2
-            text-primary hover:opacity-75"
-        >
-          <ArrowLeft size={18} />
-          Voltar para Minha Coleção
-        </button>
-      </main>
-    );
-  }
-
-  const ownedVolumes = manga.ownedVolumes || [];
-
-  const totalOwned = ownedVolumes.length;
-
-  const totalMissing = manga.totalVolumes - totalOwned;
-
+  // Os hooks ficam antes do "return" abaixo: chamar hooks depois de um
+  // return condicional quebra as regras do React.
   const [coverUrl, setCoverUrl] = useState("");
 
     useEffect(() => {
@@ -75,6 +50,33 @@ export function MangaDetails() {
         }
       };
     }, [manga?.id]);
+
+  // Verifica se o mangá existe
+  if (!manga) {
+    return (
+      <main className="flex-1 px-6 py-8 lg:px-10">
+        <h1 className="text-2xl font-bold">
+          Mangá não encontrado
+        </h1>
+
+        <button
+          type="button"
+          onClick={() => navigate("/colecao")}
+          className="mt-5 inline-flex items-center gap-2
+            text-primary hover:opacity-75"
+        >
+          <ArrowLeft size={18} />
+          Voltar para Minha Coleção
+        </button>
+      </main>
+    );
+  }
+
+  const ownedVolumes = manga.ownedVolumes || [];
+
+  const totalOwned = ownedVolumes.length;
+
+  const totalMissing = manga.totalVolumes - totalOwned;
 
   const progress = manga.totalVolumes > 0
     ? Math.round((totalOwned / manga.totalVolumes) * 100)
@@ -123,7 +125,7 @@ export function MangaDetails() {
         <div className="flex flex-col gap-5 sm:flex-row">
 
           <div
-            className="flex h-40 w-28 shrink-0 items-center
+            className="flex h-60 w-40 shrink-0 items-center
               justify-center overflow-hidden rounded-lg
               text-center shadow-lg"
             style={{ backgroundColor: manga.coverColor }}
@@ -136,7 +138,7 @@ export function MangaDetails() {
               />
             ) : (
               <div className="flex flex-col items-center justify-center p-3">
-                <BookOpen size={36} className="mb-3 text-white" />
+                <BookOpen size={44} className="mb-3 text-white" />
                 <span className="text-xs font-bold text-white">
                   {manga.coverLabel}
                 </span>

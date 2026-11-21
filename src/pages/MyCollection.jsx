@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import {
   Search,
@@ -21,13 +21,21 @@ export function MyCollection() {
   const { mangas, deleteManga } = useMangas();
 
   // Estados dos filtros
-  const [search, setSearch] = useState("");
+  // A busca do topo envia o termo pela URL (?q=...)
+  const [searchParams] = useSearchParams();
+  const queryFromUrl = searchParams.get("q") ?? "";
+
+  const [search, setSearch] = useState(queryFromUrl);
   const [publisherFilter, setPublisherFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [sortOrder, setSortOrder] = useState("az");
   const [selectedManga, setSelectedManga] = useState(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setSearch(queryFromUrl);
+  }, [queryFromUrl]);
 
   // Lista de editoras cadastradas
   const publishers = [
@@ -359,7 +367,8 @@ function handleGeneratePDF() {
 
 
             <span className="whitespace-nowrap text-sm font-medium text-primary">
-                {filteredMangas.length} resultados
+                {filteredMangas.length}{" "}
+                {filteredMangas.length === 1 ? "resultado" : "resultados"}
             </span>
 
               <button
