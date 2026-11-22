@@ -14,6 +14,7 @@ import {
 import { useMangas } from "../context/MangaContext";
 
 import { MangaForm } from "../components/MangaForm";
+import { StatRow } from "../components/StatRow";
 import { WishlistForm } from "../components/WishlistForm";
 
 export function Wishlist() {
@@ -97,7 +98,7 @@ export function Wishlist() {
         sm:flex-row sm:items-center sm:justify-between">
 
         <div>
-          <h1 className="text-2xl font-bold sm:text-3xl">
+          <h1 className="display text-3xl sm:text-4xl">
             Minha Lista de Desejos
           </h1>
 
@@ -120,47 +121,18 @@ export function Wishlist() {
 
       </section>
 
-      {/* Indicador */}
+      {/* Indicadores */}
 
-      <section className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-
-        <div className="rounded-xl border border-border
-          bg-card p-5">
-
-          <div className="mb-4 inline-flex rounded-lg
-            bg-primary/15 p-3 text-primary">
-            <Heart size={23} />
-          </div>
-
-          <p className="text-3xl font-bold">
-            {wishlist.length}
-          </p>
-
-          <p className="mt-1 text-sm text-muted">
-            Mangás desejados
-          </p>
-
-        </div>
-
-        <div className="rounded-xl border border-border
-          bg-card p-5">
-
-          <div className="mb-4 inline-flex rounded-lg
-            bg-primary/15 p-3 text-primary">
-            <BookOpen size={23} />
-          </div>
-
-          <p className="text-3xl font-bold">
-            {new Set(wishlist.map((item) => item.publisher)).size}
-          </p>
-
-          <p className="mt-1 text-sm text-muted">
-            Editoras diferentes
-          </p>
-
-        </div>
-
-      </section>
+      <StatRow
+        className="mb-10"
+        items={[
+          { label: "Mangás desejados", value: wishlist.length },
+          {
+            label: "Editoras diferentes",
+            value: new Set(wishlist.map((item) => item.publisher)).size,
+          },
+        ]}
+      />
 
       {/* Pesquisa e filtros */}
 
@@ -220,7 +192,7 @@ export function Wishlist() {
 
         <div className="mb-5 flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-bold">
+            <h2 className="display text-2xl">
               Mangás desejados
             </h2>
 
@@ -263,7 +235,7 @@ export function Wishlist() {
 
                   <div className="min-w-0 flex-1">
 
-                    <h3 className="break-words text-lg font-bold">
+                    <h3 className="display break-words text-2xl leading-tight">
                       {item.title}
                     </h3>
 
@@ -353,7 +325,7 @@ export function Wishlist() {
               className="mx-auto mb-4 text-primary"
             />
 
-            <h2 className="text-lg font-bold">
+            <h2 className="display text-2xl">
               {wishlist.length === 0
                 ? "Sua lista de desejos está vazia!"
                 : "Nenhum mangá encontrado."}

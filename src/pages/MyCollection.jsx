@@ -3,9 +3,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 import {
   Search,
-  Library,
-  BookOpen,
-  Building2,
   ArrowUpDown,
   FilterX,
   Plus,
@@ -13,6 +10,7 @@ import {
 } from "lucide-react";
 
 import { MangaCard } from "../components/MangaCard";
+import { StatRow } from "../components/StatRow";
 import { useMangas } from "../context/MangaContext";
 import { MangaForm } from "../components/MangaForm";
 import { generateMissingVolumesPDF } from "../utils/generateMissingVolumesPDF";
@@ -146,7 +144,7 @@ function handleGeneratePDF() {
       {/* Cabeçalho */}
 
       <section className="mb-8">
-        <h1 className="text-2xl font-bold sm:text-3xl">
+        <h1 className="display text-3xl sm:text-4xl">
           Minha Coleção
         </h1>
 
@@ -155,63 +153,19 @@ function handleGeneratePDF() {
         </p>
       </section>
 
-      {/* Estatísticas */}
+      {/* Indicadores */}
 
-      <section className="mb-8 grid grid-cols-1 gap-4
-        sm:grid-cols-3">
-
-        <div className="rounded-xl border border-border
-          bg-card p-5">
-
-          <div className="mb-4 rounded-lg bg-primary/15
-            p-3 text-primary w-fit">
-            <Library size={22} />
-          </div>
-
-          <p className="text-3xl font-bold">
-            {totalCollections}
-          </p>
-
-          <p className="mt-1 text-sm text-muted">
-            Obras cadastradas
-          </p>
-        </div>
-
-        <div className="rounded-xl border border-border
-          bg-card p-5">
-
-          <div className="mb-4 rounded-lg bg-primary/15
-            p-3 text-primary w-fit">
-            <BookOpen size={22} />
-          </div>
-
-          <p className="text-3xl font-bold">
-            {totalOwned}
-          </p>
-
-          <p className="mt-1 text-sm text-muted">
-            Volumes adquiridos
-          </p>
-        </div>
-
-        <div className="rounded-xl border border-border
-          bg-card p-5">
-
-          <div className="mb-4 rounded-lg bg-primary/15
-            p-3 text-primary w-fit">
-            <Building2 size={22} />
-          </div>
-
-          <p className="text-3xl font-bold">
-            {totalPublishers}
-          </p>
-
-          <p className="mt-1 text-sm text-muted">
-            Editoras diferentes
-          </p>
-        </div>
-
-      </section>
+      <StatRow
+        className="mb-10"
+        items={[
+          { label: "Obras cadastradas", value: totalCollections },
+          {
+            label: "Volumes adquiridos",
+            value: totalOwned.toLocaleString("pt-BR"),
+          },
+          { label: "Editoras diferentes", value: totalPublishers },
+        ]}
+      />
 
       {/* Pesquisa e filtros */}
 
@@ -354,7 +308,7 @@ function handleGeneratePDF() {
 
         <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-xl font-bold">
+            <h2 className="display text-2xl">
               Todos os mangás
             </h2>
 
@@ -450,7 +404,7 @@ function handleGeneratePDF() {
               className="mx-auto mb-4 text-muted"
             />
 
-            <h3 className="text-lg font-bold">
+            <h3 className="display text-2xl">
               Nenhum mangá encontrado
             </h3>
 

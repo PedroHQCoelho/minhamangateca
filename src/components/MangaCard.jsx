@@ -79,7 +79,7 @@ export function MangaCard({
       <div className="flex gap-4">
 
         <div
-          className="flex h-36 w-24 shrink-0 items-center
+          className="flex h-40 w-28 shrink-0 items-center
             justify-center overflow-hidden rounded-lg
             text-center shadow-lg"
           style={{ backgroundColor: coverColor }}

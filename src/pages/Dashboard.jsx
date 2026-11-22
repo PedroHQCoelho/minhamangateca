@@ -1,17 +1,10 @@
 import { useState } from "react";
 
-import {
-  Plus,
-  Layers,
-  BookOpen,
-  Bookmark,
-  TrendingUp,
-  BadgeCheck,
-  RefreshCw,
-} from "lucide-react";
+import { Plus, BookOpen } from "lucide-react";
 
 import { MangaCard } from "../components/MangaCard";
 import { MangaForm } from "../components/MangaForm";
+import { StatRow } from "../components/StatRow";
 import { useMangas } from "../context/MangaContext";
 
 export function Dashboard() {
@@ -56,36 +49,18 @@ export function Dashboard() {
       : 0;
 
   const stats = [
-    {
-      label: "Coleções",
-      value: totalCollections,
-      icon: Layers,
-    },
-    {
-      label: "Coleções completas",
-      value: completedCollections,
-      icon: BadgeCheck,
-    },
-    {
-      label: "Coleções atualizadas",
-      value: updatedCollections,
-      icon: RefreshCw,
-    },
+    { label: "Coleções", value: totalCollections },
+    { label: "Coleções completas", value: completedCollections },
+    { label: "Coleções atualizadas", value: updatedCollections },
     {
       label: "Volumes adquiridos",
-      value: totalOwned,
-      icon: BookOpen,
+      value: totalOwned.toLocaleString("pt-BR"),
     },
     {
       label: "Volumes faltantes",
-      value: totalMissing,
-      icon: Bookmark,
+      value: totalMissing.toLocaleString("pt-BR"),
     },
-    {
-      label: "Progresso da coleção",
-      value: `${progress}%`,
-      icon: TrendingUp,
-    },
+    { label: "Progresso da coleção", value: `${progress}%` },
   ];
 
   return (
@@ -97,7 +72,7 @@ export function Dashboard() {
         sm:flex-row sm:items-center sm:justify-between">
 
         <div>
-          <h1 className="text-2xl font-bold sm:text-3xl">
+          <h1 className="display text-3xl sm:text-4xl">
             Bem-vindo à sua Mangateca!
           </h1>
 
@@ -122,40 +97,10 @@ export function Dashboard() {
 
       {/* Indicadores */}
 
-      <section className="mb-10 grid grid-cols-1 gap-4
-        sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6">
-
-        {stats.map((stat) => {
-          const Icon = stat.icon;
-
-          return (
-            <div
-              key={stat.label}
-              className="rounded-xl border border-border
-                bg-card p-5"
-            >
-              <div className="mb-4 flex items-center
-                justify-between">
-
-                <div className="rounded-lg bg-primary/15 p-3
-                  text-primary">
-                  <Icon size={23} />
-                </div>
-
-              </div>
-
-              <p className="text-3xl font-bold">
-                {stat.value}
-              </p>
-
-              <p className="mt-1 text-sm text-muted">
-                {stat.label}
-              </p>
-            </div>
-          );
-        })}
-
-      </section>
+      <StatRow 
+        className="mb-10 flex-col md:flex-row" 
+        items={stats} 
+      />
 
       {/* Minhas coleções */}
 
@@ -165,7 +110,7 @@ export function Dashboard() {
           justify-between">
 
           <div>
-            <h2 className="text-xl font-bold">
+            <h2 className="display text-2xl">
               Minhas coleções
             </h2>
 
@@ -204,7 +149,7 @@ export function Dashboard() {
               className="mx-auto mb-4 text-primary"
             />
 
-            <h2 className="text-lg font-bold">
+            <h2 className="display text-2xl">
               Sua mangateca está vazia!
             </h2>
 

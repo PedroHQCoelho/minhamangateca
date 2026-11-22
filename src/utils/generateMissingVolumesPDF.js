@@ -1,5 +1,99 @@
 import { jsPDF } from "jspdf";
 
+import {
+  ARCHIVO_CONDENSED_EXTRABOLD,
+  ARCHIVO_MEDIUM,
+} from "./archivoPdfFonts";
+
+// Vermelho da marca (o mesmo do favicon e da sidebar)
+const BRAND_RED = [229, 57, 53];
+
+// Registra a Archivo (a fonte do site) neste documento
+function registerBrandFonts(doc) {
+  doc.addFileToVFS(
+    "Archivo-CondensedExtraBold.ttf",
+    ARCHIVO_CONDENSED_EXTRABOLD
+  );
+  doc.addFont(
+    "Archivo-CondensedExtraBold.ttf",
+    "ArchivoCondensed",
+    "bold"
+  );
+
+  doc.addFileToVFS("Archivo-Medium.ttf", ARCHIVO_MEDIUM);
+  doc.addFont("Archivo-Medium.ttf", "Archivo", "normal");
+}
+
+// Desenha o logo (o mesmo do favicon): quadrado vermelho arredondado,
+// livro aberto branco e marcador de página.
+// As medidas seguem o desenho original de 64 x 64.
+function drawLogoMark(doc, x, y, size) {
+  const s = size / 64;
+
+  // Fundo
+  doc.setFillColor(...BRAND_RED);
+  doc.roundedRect(x, y, size, size, 14 * s, 14 * s, "F");
+
+  // Páginas do livro
+  doc.setDrawColor(255, 255, 255);
+  doc.setLineWidth(4 * s);
+  doc.setLineCap("round");
+  doc.setLineJoin("round");
+
+  doc.lines(
+    [
+      [-7, -6, -15, -6, -21.5, -3],
+      [0, 27],
+      [6.5, -3, 14.5, -3, 21.5, 3],
+    ],
+    x + 32 * s,
+    y + 18.5 * s,
+    [s, s],
+    "S",
+    false
+  );
+
+  doc.lines(
+    [
+      [7, -6, 15, -6, 21.5, -3],
+      [0, 27],
+      [-6.5, -3, -14.5, -3, -21.5, 3],
+    ],
+    x + 32 * s,
+    y + 18.5 * s,
+    [s, s],
+    "S",
+    false
+  );
+
+  // Marcador de página
+  doc.setFillColor(255, 255, 255);
+
+  doc.lines(
+    [
+      [4, 0],
+      [0, 27],
+      [2, 0.5],
+      [0, 7],
+      [-4, -3.5],
+      [-4, 3.5],
+      [0, -7],
+      [2, -0.5],
+    ],
+    x + 30 * s,
+    y + 18.5 * s,
+    [s, s],
+    "F",
+    true
+  );
+
+  // Devolve o traço ao padrão para o restante do relatório
+  // (senão as linhas divisórias herdam a espessura do logo)
+  doc.setLineCap("butt");
+  doc.setLineJoin("miter");
+  doc.setLineWidth(0.3);
+}
+
 export function generateMissingVolumesPDF(mangas) {
   // Calcular os volumes faltantes de cada mangá
   const missingMangas = mangas
@@ -34,6 +128,8 @@ export function generateMissingVolumesPDF(mangas) {
   const pageHeight = doc.internal.pageSize.getHeight();
   const margin = 18;
 
+  registerBrandFonts(doc);
+
   const totalMissing = missingMangas.reduce(
     (sum, manga) => sum + manga.missingVolumes.length,
     0
@@ -41,44 +137,34 @@ export function generateMissingVolumesPDF(mangas) {
 
   const date = new Date().toLocaleDateString("pt-BR");
 
-  let y = 20;
+  let y = 16;
 
-  // Cabeçalho
-  // Pequeno ícone de livro aberto
-  const iconX = margin;
-  const iconY = y - 7;
+  // Cabeçalho: logo + nome, como na sidebar
+  const logoSize = 15;
 
-  doc.setDrawColor(220, 38, 38);
-  doc.setLineWidth(0.55);
+  drawLogoMark(doc, margin, y, logoSize);
 
-  // Página esquerda
-  doc.line(iconX + 6, iconY + 1, iconX + 3, iconY);
-  doc.line(iconX + 3, iconY, iconX, iconY);
-  doc.line(iconX, iconY, iconX, iconY + 7);
-  doc.line(iconX, iconY + 7, iconX + 3, iconY + 7);
-  doc.line(iconX + 3, iconY + 7, iconX + 6, iconY + 8);
+  doc.setFont("Archivo", "normal");
+  doc.setFontSize(9);
+  doc.setTextColor(120);
+  doc.text("Minha", margin + logoSize + 4, y + 5.4);
 
-  // Página direita
-  doc.line(iconX + 6, iconY + 1, iconX + 6, iconY + 8);
-  doc.line(iconX + 6, iconY + 1, iconX + 9, iconY);
-  doc.line(iconX + 9, iconY, iconX + 12, iconY);
-  doc.line(iconX + 12, iconY, iconX + 12, iconY + 7);
-  doc.line(iconX + 12, iconY + 7, iconX + 9, iconY + 7);
-  doc.line(iconX + 9, iconY + 7, iconX + 6, iconY + 8);
-
-  // Título
+  doc.setFont("ArchivoCondensed", "bold");
+  doc.setFontSize(25);
   doc.setTextColor(30);
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(20);
-  doc.text("Minha Mangateca", margin + 16, y);
-  y += 9;
+  doc.text("Mangateca", margin + logoSize + 4, y + 13.6);
 
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "normal");
-  doc.text("Relatorio de volumes faltantes", margin, y);
+  y += logoSize + 13;
+
+  // Título do relatório
+  doc.setFont("ArchivoCondensed", "bold");
+  doc.setFontSize(18);
+  doc.setTextColor(30);
+  doc.text("Relatório de volumes faltantes", margin, y);
 
   y += 7;
 
+  doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
   doc.setTextColor(110);
   doc.text(`Data: ${date}`, margin, y);
@@ -166,21 +252,28 @@ export function generateMissingVolumesPDF(mangas) {
     y += 7;
   });
 
-  // Rodapé com numeração das páginas
+  // Rodapé: logo pequeno + nome à esquerda, numeração à direita
   const pageCount = doc.internal.getNumberOfPages();
 
   for (let page = 1; page <= pageCount; page++) {
     doc.setPage(page);
+
+    drawLogoMark(doc, margin, pageHeight - 16, 5.5);
+
+    doc.setFont("ArchivoCondensed", "bold");
+    doc.setFontSize(11);
+    doc.setTextColor(30);
+    doc.text("Minha Mangateca", margin + 7.5, pageHeight - 11.6);
 
     doc.setFont("helvetica", "normal");
     doc.setFontSize(8);
     doc.setTextColor(130);
 
     doc.text(
-      `Minha Mangateca - Pagina ${page} de ${pageCount}`,
-      pageWidth / 2,
-      pageHeight - 10,
-      { align: "center" }
+      `Página ${page} de ${pageCount}`,
+      pageWidth - margin,
+      pageHeight - 11.9,
+      { align: "right" }
     );
   }
 
