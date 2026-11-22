@@ -304,7 +304,7 @@ useEffect(() => {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold">
+              <h2 className="display text-2xl">
                 {isEditing ? "Editar mangá" : "Adicionar mangá"}
               </h2>
 

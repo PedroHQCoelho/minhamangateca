@@ -1,7 +1,9 @@
 
-import { Globe, BookOpen, Heart } from "lucide-react";
+import { Globe, Heart } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
+
+import { LogoMark } from "./Logo";
 
 export function Footer() {
   return (
@@ -12,13 +14,10 @@ export function Footer() {
 
         {/* Project identity */}
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center
-            justify-center rounded-lg bg-primary/15 text-primary">
-            <BookOpen size={24} />
-          </div>
+          <LogoMark size={44} />
 
           <div>
-            <h3 className="font-bold text-foreground">
+            <h3 className="display text-xl text-foreground">
               Minha Mangateca
             </h3>
 
@@ -65,7 +64,7 @@ export function Footer() {
               href="https://pedrohqcoelho.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
-              title="Portfóliio"
+              title="Portfólio"
               aria-label="Portfólio"
               className="flex items-center gap-2 text-sm
                 text-gray-400 transition hover:text-primary"

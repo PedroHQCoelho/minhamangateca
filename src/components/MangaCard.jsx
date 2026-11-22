@@ -102,7 +102,7 @@ export function MangaCard({
 
         <div className="flex min-w-0 flex-1 flex-col">
 
-          <h3 className="text-lg font-bold">
+          <h3 className="display text-2xl leading-tight">
             {title}
           </h3>
 
