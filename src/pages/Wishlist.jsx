@@ -6,7 +6,6 @@ import {
   Search,
   Pencil,
   Trash2,
-  BookOpen,
   ArrowRight,
   X,
 } from "lucide-react";
@@ -15,6 +14,7 @@ import { useMangas } from "../context/MangaContext";
 
 import { MangaForm } from "../components/MangaForm";
 import { StatRow } from "../components/StatRow";
+import { TypeCover } from "../components/TypeCover";
 import { WishlistForm } from "../components/WishlistForm";
 
 export function Wishlist() {
@@ -225,13 +225,7 @@ export function Wishlist() {
 
                 <div className="flex items-start gap-4">
 
-                  <div className="flex h-24 w-20 shrink-0
-                    items-center justify-center rounded-lg
-                    bg-primary/10 text-primary">
-
-                    <BookOpen size={32} />
-
-                  </div>
+                  <TypeCover title={item.title} />
 
                   <div className="min-w-0 flex-1">
 

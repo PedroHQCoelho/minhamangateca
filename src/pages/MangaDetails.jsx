@@ -55,7 +55,7 @@ export function MangaDetails() {
   if (!manga) {
     return (
       <main className="flex-1 px-6 py-8 lg:px-10">
-        <h1 className="text-2xl font-bold">
+        <h1 className="display text-3xl">
           Mangá não encontrado
         </h1>
 
@@ -149,7 +149,7 @@ export function MangaDetails() {
           <div className="flex flex-1 flex-col">
 
             <div className="flex flex-wrap items-center gap-3">
-              <h1 className="text-2xl font-bold sm:text-3xl">
+              <h1 className="display text-3xl sm:text-4xl">
                 {manga.title}
               </h1>
 
@@ -163,6 +163,9 @@ export function MangaDetails() {
                         ? "bg-red-500/10 text-red-600"
                         : "bg-blue-500/10 text-blue-500"
                 }`}>
+                <span lang="ja" aria-hidden="true" className="mr-1.5 font-bold">
+                  {{ ongoing: "続", completed: "完", paused: "休", cancelled: "止" }[manga.publicationStatus || "ongoing"]}
+                </span>
                 {{
                   ongoing: "Em publicação",
                   completed: "Completo",
@@ -248,7 +251,7 @@ export function MangaDetails() {
       <section>
 
         <div className="mb-5">
-          <h2 className="text-xl font-bold">
+          <h2 className="display text-2xl">
             Volumes da coleção
           </h2>
 

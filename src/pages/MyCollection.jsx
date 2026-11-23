@@ -379,6 +379,9 @@ function handleGeneratePDF() {
                             ? "bg-red-500/10 text-red-600"
                             : "bg-blue-500/10 text-blue-500"
                     }`}>
+                    <span lang="ja" aria-hidden="true" className="mr-1.5 font-bold">
+                      {{ ongoing: "続", completed: "完", paused: "休", cancelled: "止" }[manga.publicationStatus || "ongoing"]}
+                    </span>
                     {{
                       ongoing: "Em publicação",
                       completed: "Completo",
