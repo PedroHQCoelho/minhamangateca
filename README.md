@@ -29,36 +29,52 @@ O projecto foi pensado para oferecer uma experiência simples e intuitiva, com i
 
 ## 🖥️ Prévia da aplicação
 
-### 1. Dashboard
+### 1. Minha Mangateca — Visão geral
 
-Acompanhe os principais números da sua coleção, veja o progresso geral e aceda rapidamente aos mangás adicionados.
+Conheça a proposta da aplicação: um espaço para organizar sua coleção de mangás, acompanhar volumes adquiridos e planejar suas próximas leituras.
 
 <p align="center">
-  <img src="docs/images/dashboard.png" alt="Dashboard da Minha Mangateca com estatísticas e coleções recentes" width="100%" />
+  <img src="docs/images/01-capa-readme-1280x640.png" alt="Apresentação da Minha Mangateca, com destaque para a organização e o acompanhamento de coleções de mangás" width="100%" />
 </p>
 
-### 2. Minha Coleção
+### 2. Dashboard — Acompanhe sua coleção
 
-Consulte as obras cadastradas, pesquise por título, filtre por editora ou status de publicação e acompanhe o progresso de cada coleção.
+Tenha uma visão geral da sua biblioteca com indicadores de coleções cadastradas, obras completas, coleções atualizadas, volumes adquiridos e volumes que ainda faltam. Consulte também os mangás adicionados recentemente.
 
 <p align="center">
-  <img src="docs/images/colecao.png" alt="Tela Minha Coleção com busca, filtros e cartões de mangás" width="100%" />
+  <img src="docs/images/02-dashboard-escuro-2880x2000.png" alt="Dashboard da Minha Mangateca no tema escuro, com estatísticas da coleção e mangás adicionados recentemente" width="100%" />
 </p>
 
-### 3. Detalhes do mangá
+### 3. Minha Coleção — Pesquise e organize seus mangás
 
-Visualize a quantidade total de volumes, os exemplares adquiridos e os que ainda faltam. Actualize o status de cada volume directamente na grade.
+Visualize todas as obras cadastradas em um só lugar. Pesquise por título, filtre por editora e status de publicação, escolha a ordenação dos resultados e acompanhe o progresso de cada coleção.
 
 <p align="center">
-  <img src="docs/images/detalhes.png" alt="Detalhes de um mangá com progresso e grade de volumes adquiridos e faltantes" width="100%" />
+  <img src="docs/images/03-minha-colecao-claro-2880x2500.png" alt="Página Minha Coleção no tema claro, com pesquisa, filtros, ordenação e cartões de mangás" width="100%" />
 </p>
 
-### 4. Lista de desejos
+### 4. Detalhes do mangá — Controle volume por volume
 
-Guarde os títulos que pretende comprar e mantenha suas próximas aquisições organizadas. Quando adquirir uma obra, pode transferi-la para a coleção.
+Acesse a página de cada obra para consultar a editora, o total de volumes publicados, os exemplares adquiridos e os que ainda faltam. Altere o status de cada volume individualmente e acompanhe o progresso da coleção.
 
 <p align="center">
-  <img src="docs/images/desejos.png" alt="Lista de desejos com mangás que o utilizador pretende adquirir" width="100%" />
+  <img src="docs/images/04-detalhes-do-manga-2880x2500.png" alt="Página de detalhes de Berserk, com progresso da coleção e grade interativa de volumes adquiridos e faltantes" width="100%" />
+</p>
+
+### 5. Relatórios em PDF — Consulte os volumes faltantes
+
+Gere um relatório com as obras que ainda possuem volumes pendentes. O documento reúne os títulos, as editoras e os números dos volumes faltantes, facilitando o planeamento das próximas aquisições.
+
+<p align="center">
+  <img src="docs/images/05-relatorio-em-pdf-2880x1620.png" alt="Prévia de relatório em PDF da Minha Mangateca, com a relação de mangás e volumes faltantes" width="100%" />
+</p>
+
+### 6. Experiência responsiva — Use em diferentes dispositivos
+
+Acesse as principais funcionalidades também pelo celular. O layout adapta o dashboard, a lista de mangás e o acompanhamento dos volumes a telas menores, mantendo a navegação e o gerenciamento da coleção acessíveis.
+
+<p align="center">
+  <img src="docs/images/06-celulares-2880x1620.png" alt="Demonstração da interface responsiva da Minha Mangateca em telas de smartphones" width="100%" />
 </p>
 
 ---
